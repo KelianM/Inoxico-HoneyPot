@@ -1,0 +1,52 @@
+﻿@model IEnumerable<InoxicoHP.Models.Business>
+
+@{
+    ViewData["Title"] = TempData["Name"];
+    string Country = ((Countries)ViewBag.countryID).ToString();
+}
+
+<h1>@TempData["Name"] - @TempData["NoxID"]</h1>
+
+<div>
+    <h4>Available Products for @Country</h4>
+    @foreach (var item in Model)
+    {
+        @if ((int)item.Country == ViewBag.countryID)
+        {
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(modelItem => item.Product)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.Product)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(modelItem => item.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(modelItem => item.Available)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.Available)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(modelItem => item.Turnaround)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.Turnaround)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(modelItem => item.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </dd>
+            </dl>
+            <a asp-action="Purchase" asp-route-id="@item.Id">Purchase</a>
+        }
+    }
+</div>

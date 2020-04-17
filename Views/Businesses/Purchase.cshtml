@@ -1,0 +1,46 @@
+﻿@model InoxicoHP.Models.Customer
+
+@{
+    ViewData["Title"] = "Purchase";
+}
+
+<h1>@TempData["Name"] - @TempData["NoxID"]</h1>
+<h2>Purchase @TempData["Product"] for $@TempData["Price"]</h2>
+
+<h4>Enter your details</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Purchase">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyName" class="control-label"></label>
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompanyCountry" class="control-label"></label>
+                <input asp-for="CompanyCountry" class="form-control" />
+                <span asp-validation-for="CompanyCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Proceed to Payment" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<a asp-action="BusinessDetails" asp-route-id="@TempData["NoxID"]">Back to product list</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
